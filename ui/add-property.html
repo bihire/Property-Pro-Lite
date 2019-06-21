@@ -1,0 +1,83 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>Add Property</title>
+    <link rel="stylesheet" type="text/css" href="css/styly.css">
+    
+</head>
+
+<body>
+    
+               
+    <h2>
+        <center>Edit or Post a property</center>
+      
+    </h2>
+    <!-- start of the form -->
+    <div class="form">
+       <!-- profile picture -->
+      <div id="profile">
+        <img src="images/peace.jpg" alt="image" alt="image"/>
+        <h3>Bihire Boris</h3>
+       </div>
+      <!-- end of Profile picture -->
+        <h1>form to post or edit a Property</h1>
+        <label>Owner of the propery</label>
+        <input type="text" placeholder="Enter Firstname" name="firstname" id="firstname">
+        <br>
+        <br>
+        <input type="text" placeholder="Enter Lastname" name="lastname" id="lastname">
+        <br>
+        <br>
+        <label>Title of Property</label>
+        <input type="text" placeholder="Title of Property">
+        <br>
+        <br>
+        <label>status of Property</label>
+        
+        <select>
+            <option value="sold">Sold</option>
+            <option value="available">on sale</option>
+            
+        </select>
+          <br>
+          <br>
+        <label>Price</label>
+          <input type="text" placeholder="Property's price" >
+          <br>
+          <br>
+        <label>state</label>
+        <input type="text" placeholder="State where property is located" >
+        <br>
+        <br>
+        <label>City</label>
+        <input type="text" placeholder="City where property is located" >
+        <br>
+        <br>
+        <label>Address</label>
+        <input type="text" placeholder="Address" >
+        <br>
+        <br>
+        <label>Type</label>
+        <input type="text" placeholder=" 2 bedroom, 3 bedroom etc" >
+        <br>
+        <br>
+        <label>Created on</label>
+        <input type="date" placeholder=" Creation Date" >
+        <br>
+        <br>
+        <input type="file" name="pic" accept="image/*">
+        <br>
+        <br>
+        <label>Description</label>
+        <textarea  rows="4" cols="50"name="comment" >Enter Small Description here...</textarea>
+        <br>
+        <br>
+        <button onclick=post()> <strong>Post Property</strong></button>
+
+    </div>
+    <!-- end of the form -->
+</body>
+
+</html>
