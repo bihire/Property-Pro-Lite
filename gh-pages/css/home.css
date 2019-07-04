@@ -28,6 +28,7 @@ body {
   left: 50%;
   transform: translate(-50%, -50%);
   background-color: #fff;
+  opacity: 0.8;
 }
 
 .prime {
@@ -48,7 +49,6 @@ body {
 }
 
 .profile {
-
   width: 20%;
 }
 
@@ -101,6 +101,7 @@ body {
   position: relative;
   overflow: hidden;
   box-sizing: border-box;
+  cursor: pointer;
 }
 
 .card .img {
@@ -111,6 +112,7 @@ body {
   object-fit: cover;
   opacity: 1;
   transition: ease-in-out 250ms;
+  cursor: pointer;
 }
 
 
@@ -122,10 +124,12 @@ body {
   opacity: 0;
   color: #fff;
   transition: ease-out 250ms;
+  cursor: pointer;
 }
 
 .card:hover .img {
   opacity: 0.3;
+  cursor: pointer;
 }
 
 .card:hover .card-info {
@@ -167,15 +171,15 @@ body {
 /* profile image */
 
 .profile-card {
-  border: 1px solid #ddd;
   border-radius: 3px;
   transition: 0.3s;
-  width: 80%;
+  width: 100%;
   margin: auto;
-  margin-top: 10%;
+  margin-top: 50%;
   padding: 10px;
   position: relative;
   box-sizing: border-box;
+  background-color: rgb(75, 64, 172);
 }
 
 .profile-card .image {
@@ -184,6 +188,7 @@ body {
   height: 110px;
   width: 110px;
   margin: auto;
+  margin-top: 30px;
 }
 
 .profile-card::after {
@@ -201,6 +206,47 @@ body {
   font-weight: 600;
   margin: auto;
   text-align: right;
+}
+
+.input-item {
+  margin: 10px 5px;
+}
+
+.prime-input {
+  display: flex;
+  flex-direction: row;
+  padding: 0;
+  margin: 5px 0;
+}
+
+.prime-input input {
+  background-color: #fff;
+  border-width: 0;
+  border-style: groove;
+  border-color: #fff;
+  font-size: 16px;
+  padding: 4px;
+  flex: 1;
+  width: 100%;
+}
+
+.input-item label {
+  color: #fff;
+  font-size: 0.9em;
+}
+
+
+.submit .submit_button {
+  padding: 4px 6px;
+  color: black;
+  border-width: 0;
+  border-style: groove;
+  border-color: yellow;
+  background: yellow;
+  right: 0;
+  margin: 20px 0;
+  font-size: 0.7em;
+  cursor: pointer;
 }
 
 
