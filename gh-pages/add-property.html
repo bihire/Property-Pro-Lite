@@ -1,83 +1,159 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 
 <head>
-    <title>Add Property</title>
-    <link rel="stylesheet" type="text/css" href="css/styly.css">
-    
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <!-- <link rel="stylesheet" href="css/fontawesome.min.css"> -->
+  <link href="https://use.fontawesome.com/releases/v5.0.1/css/all.css" rel="stylesheet">
+
+  <link rel="stylesheet" type="text/css" href="css/styly.css">
+  <link rel="stylesheet" type="text/css" href="css/properties.css">
+
+  <link rel="stylesheet" type="text/css" href="css/navbar.css">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+  <title>Document</title>
+  <script src="js/fontawesome.min.js"></script>
 </head>
 
 <body>
-    
-               
-    <h2>
-        <center>Edit or Post a property</center>
-      
-    </h2>
-    <!-- start of the form -->
-    <div class="form">
-       <!-- profile picture -->
-      <div id="profile">
-        <img src="images/peace.jpg" alt="image" alt="image"/>
-        <h3>Bihire Boris</h3>
-       </div>
-      <!-- end of Profile picture -->
-        <h1>form to post or edit a Property</h1>
-        <label>Owner of the propery</label>
-        <input type="text" placeholder="Enter Firstname" name="firstname" id="firstname">
-        <br>
-        <br>
-        <input type="text" placeholder="Enter Lastname" name="lastname" id="lastname">
-        <br>
-        <br>
-        <label>Title of Property</label>
-        <input type="text" placeholder="Title of Property">
-        <br>
-        <br>
-        <label>status of Property</label>
-        
-        <select>
-            <option value="sold">Sold</option>
-            <option value="available">on sale</option>
-            
-        </select>
-          <br>
-          <br>
-        <label>Price</label>
-          <input type="text" placeholder="Property's price" >
-          <br>
-          <br>
-        <label>state</label>
-        <input type="text" placeholder="State where property is located" >
-        <br>
-        <br>
-        <label>City</label>
-        <input type="text" placeholder="City where property is located" >
-        <br>
-        <br>
-        <label>Address</label>
-        <input type="text" placeholder="Address" >
-        <br>
-        <br>
-        <label>Type</label>
-        <input type="text" placeholder=" 2 bedroom, 3 bedroom etc" >
-        <br>
-        <br>
-        <label>Created on</label>
-        <input type="date" placeholder=" Creation Date" >
-        <br>
-        <br>
-        <input type="file" name="pic" accept="image/*">
-        <br>
-        <br>
-        <label>Description</label>
-        <textarea  rows="4" cols="50"name="comment" >Enter Small Description here...</textarea>
-        <br>
-        <br>
-        <button onclick=post()> <strong>Post Property</strong></button>
+  <div id="navbar">
+    <a href="#">Login</a>
+    <a href="#">Register</a>
 
+    <a href="#">contact</a>
+    <a href="#">About</a>
+    <a href="#">Home</a>
+  </div>
+
+  <!-- info part -->
+  <div class="prime">
+    <div class="container">
+      <div class="content">
+        <h4 id="title">Post a Property</h4>
+
+
+        <div class="main">
+
+          <div class="form">
+
+            <form action="#">
+              <div class="input-itm">
+                <label> First name:</label>
+                <div class="prime-inpt">
+
+                  <input type="text" class="number_input_1" autofocus />
+
+                </div>
+              </div>
+
+              <div class="input-itm">
+                <label> Last name:</label>
+                <div class="prime-inpt">
+
+                  <input type="text" class="number_input_2" autofocus />
+
+                </div>
+              </div>
+
+              <div class="input-itm">
+                <label> Owner:</label>
+                <div class="prime-inpt">
+
+                  <input type="text" class="number_input_2" autofocus />
+
+                </div>
+              </div>
+
+              <div class="input-itm">
+                <label> Title of the property:</label>
+                <div class="prime-inpt">
+
+                  <input type="text" class="number_input_2" autofocus />
+
+                </div>
+              </div>
+
+              <div class="input-itm">
+                <label>status of Property</label>
+                <div class="prime-inpt">
+                  <select>
+                    <option value="sold">Sold</option>
+                    <option value="available">on sale</option>
+
+                  </select>
+                </div>
+              </div>
+
+              <div class="input-itm">
+                <label> Price:</label>
+                <div class="prime-inpt">
+
+                  <input type="text" class="number_input_2" autofocus />
+
+                </div>
+              </div>
+
+              <div class="input-itm">
+                <label> Location of the property:</label>
+                <div class="prime-inpt">
+
+                  <input type="text" class="number_input_2" autofocus />
+
+                </div>
+              </div>
+
+              <div class="input-itm">
+                <label> Details about the property:</label>
+                <div class="prime-inpt">
+
+                  <input type="text" class="number_input_2" autofocus />
+
+                </div>
+              </div>
+
+              <div class="input-itm notyou">
+                <label> Upload an image:</label>
+                <div class="prime-inpt">
+
+                  <input type="file" class="number_input_2" autofocus />
+
+                </div>
+              </div>
+
+              <div class="input-itm">
+                <label>Description:</label>
+                <div class="prime-inpt">
+
+                  <textarea rows="4" cols="50" name="comment">Enter Small Description here...</textarea>
+
+                </div>
+              </div>
+
+            </form>
+            <div class="submit">
+              <input type="submit" role="button" class="submit_button" value="Submit" />
+            </div>
+          </div>
+
+
+        </div>
+      </div>
     </div>
-    <!-- end of the form -->
+
+    <div class="profile">
+      <div class="profile-card">
+        <div class="image">
+          <img src="images/peace.jpg" alt="Avatar" style="width:100%">
+        </div>
+        <div class="name">
+          <p>bihire jules boris</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
 </body>
 
 </html>
