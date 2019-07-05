@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const FlagController = require('../controllers/flagController');
 
-router.post('/create', FlagController.register);
+router.post('/flag/create', FlagController.create);
 router.get('/', FlagController.login);
 
 

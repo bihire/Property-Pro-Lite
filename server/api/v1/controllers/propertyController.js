@@ -6,7 +6,20 @@ const properties = [{
   "price": 2.0847,
   "state": "bro",
   "city": "bro",
-  "type": "bro",
+  "type": "bro i am",
+  "created_on": "2018-11-13T20:20:39+00:00",
+  "image_url": "https://www.google.be/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png",
+  "ownerEmail": "muhireboris@yahoo.fr",
+  "ownerPhoneNumber": "0798734567"
+}, {
+  "id": 1,
+  "address": "bro",
+  "owner": 1,
+  "status": "bro",
+  "price": 2.0847,
+  "state": "bro",
+  "city": "bro",
+  "type": "g",
   "created_on": "2018-11-13T20:20:39+00:00",
   "image_url": "https://www.google.be/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png",
   "ownerEmail": "muhireboris@yahoo.fr",
@@ -15,6 +28,9 @@ const properties = [{
 const {
   Propertyschema
 } = require('../models/property');
+const {
+  dateTime
+} = require('../models/date');
 
 const _ = require('lodash');
 
@@ -32,7 +48,6 @@ module.exports = {
         state,
         city,
         type,
-        created_on,
         ownerEmail,
         ownerPhoneNumber
       } = req.body;
@@ -45,11 +60,11 @@ module.exports = {
         state,
         city,
         type,
-        created_on,
+        created_on: dateTime,
         ownerEmail,
         ownerPhoneNumber
       };
-
+      console.log(dateTime);
       const Property = v.validate(property, Propertyschema);
       if (Property.errors.length !== 0) throw Property.errors;
       properties.push(Property.instance);
@@ -65,21 +80,73 @@ module.exports = {
       });
     }
   },
+  async get_all(req, res) {
+    try {
+
+      let propertis = null
+      const search = req.query.search
+      console.log(search);
+      if (search) {
+        function filterByValue(properties, search) {
+          propertis = properties.filter(function (v, i) {
+            if (v.type.toLowerCase().indexOf(search) >= 0) {
+              return true;
+            } else false;
+          });
+        }
+        filterByValue(properties, search);
+
+        res.send(
+          propertis
+        );
+      } else {
+        res.status(200).send({
+          "status": "success",
+          "data": properties
+        });
+      };
+
+    } catch (error) {
+      res.status(500).send({
+        "status": "error",
+        "error": `Error fetching property:   ${error}`
+      });
+    }
+  },
   async get(req, res) {
     try {
       const {
         id
       } = req.params;
-      const validId = properties.find( property => property.id == id);
 
-      if (validId == undefined) throw res.status(404).send({
-        "status": "error",
-        "error": `the property doesn't exist`
-      });
-      res.status(200).send({
-        "status": "success",
-        "data": validId
-      });
+      let propertis = null
+      const search = req.query.search
+      if (search) {
+        function filterByValue(properties, search) {
+          propertis = properties.filter(function (v, i) {
+            if (v.type.toLowerCase().indexOf(search) >= 0) {
+              return true;
+            } else false;
+          });
+          console.log(ans);
+        }
+        filterByValue(properties, search);
+
+        res.send(
+          propertis
+        );
+      } else {
+          const validId = properties.find(property => property.id == id);
+
+          if (validId == undefined) throw res.status(404).send({
+            "status": "error",
+            "error": `the property doesn't exist`
+          });
+          res.status(200).send({
+            "status": "success",
+            "data": validId
+          });
+        };
 
     } catch (error) {
       res.status(500).send({
