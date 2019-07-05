@@ -1,5 +1,7 @@
-const routes = require('./routes/auth');
+const authRoutes = require('./routes/auth');
+const propertyRoutes = require('./routes/property');
 
 module.exports = (app) => {
-app.use('/api/v1', routes);
+app.use('/api/v1', authRoutes);
+app.use('/api/v1', propertyRoutes);
 };
