@@ -119,34 +119,40 @@ module.exports = {
         id
       } = req.params;
 
-      let propertis = null
-      const search = req.query.search
-      if (search) {
-        function filterByValue(properties, search) {
-          propertis = properties.filter(function (v, i) {
-            if (v.type.toLowerCase().indexOf(search) >= 0) {
-              return true;
-            } else false;
-          });
-          console.log(ans);
-        }
-        filterByValue(properties, search);
+      const validId = properties.find(property => property.id == id);
 
-        res.send(
-          propertis
-        );
-      } else {
-          const validId = properties.find(property => property.id == id);
+      if (validId == undefined) throw res.status(404).send({
+        "status": "error",
+        "error": `the property doesn't exist`
+      });
+      res.status(200).send({
+        "status": "success",
+        "data": validId
+      });
 
-          if (validId == undefined) throw res.status(404).send({
-            "status": "error",
-            "error": `the property doesn't exist`
-          });
-          res.status(200).send({
-            "status": "success",
-            "data": validId
-          });
-        };
+    } catch (error) {
+      res.status(500).send({
+        "status": "error",
+        "error": `Error fetching property:   ${error}`
+      });
+    }
+  },
+  async get_by_user(req, res) {
+    try {
+      const {
+        user_id
+      } = req.params;
+
+      const validUserId = properties.filter(property => property.owner == user_id);
+
+      if (validUserId == undefined) throw res.status(404).send({
+        "status": "error",
+        "error": `the user doesn't exist`
+      });
+      res.status(200).send({
+        "status": "success",
+        "data": validUserId
+      });
 
     } catch (error) {
       res.status(500).send({
@@ -157,11 +163,29 @@ module.exports = {
   },
   async update(req, res) {
     try {
+
+      const {
+        address,
+        status,
+        price,
+        state,
+        city,
+        type,
+        ownerEmail,
+        ownerPhoneNumber
+      } = req.body;
+
       const search = _.chain(properties).find({
         id: 1
       }).merge({
-        owner: 2,
-        price: 3.809
+        address,
+        status,
+        price,
+        state,
+        city,
+        type,
+        ownerEmail,
+        ownerPhoneNumber
       });
       res.status(200).send({
         "status": "success",
