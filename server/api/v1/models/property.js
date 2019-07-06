@@ -4,33 +4,44 @@
    "type": "object",
    "properties": {
 
+     "owner": {
+       "type": "integer"
+     },
+     "id": {
+       "type": "integer"
+     },
+     "status": {
+       "type": "string"
+     },
+     "price": {
+       "type": "number"
+     },
+     "state": {
+       "type": "string"
+     },
+     "city": {
+       "type": "string"
+     },
      "address": {
        "type": "string"
      },
-     "id": {
-       "type": "number"
-     },
-     "email": {
+     "type": {
        "type": "string"
      },
-     "first_name": {
+     "created_on": {
+       "type": "string",
+       "format": "date-time"
+     },
+     "image_url": {
+       "type": "string",
+       "format": "uri"
+     },
+     "ownerEmail": {
        "type": "string"
      },
-     "last_name": {
+     "ownerPhoneNumber": {
        "type": "string"
      },
-     "password": {
-       "type": "string"
-     },
-     "confirm_password": {
-       "type": "string"
-     },
-     "phone_number": {
-       "type": "string"
-     },
-     "is_admin": {
-       "type": "boolean"
-     }
    }
  };
 
