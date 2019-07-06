@@ -15,11 +15,19 @@ app.use(cors());
 
 app.use((req, res, next) => {
   let version = req.url.match(/\/api\/(v[0-9]+).*/) || [];
+  const {
+    readdirSync
+  } = require('fs');
 
+  const dirPath = path.join(__dirname, './api');
+  const getDirectories = srcPath => fs.readdirSync(srcPath).filter(file => fs.statSync(path.join(srcPath, file)).isDirectory());
+
+  const lastDir = getDirectories(dirPath)[getDirectories(dirPath).length - 1];
   version = version[1] || '';
   if (version != '') {
     const appPath = path.join(__dirname, `./api/${version}/index.js`);
-    console.log(appPath);
+    const callBackPath = path.join(__dirname, `./api/${lastDir}/index.js`);
+    console.log(callBackPath);
     if (!fs.existsSync(appPath)) {
 
       return res.status(404).send({
@@ -28,7 +36,7 @@ app.use((req, res, next) => {
     }
     require(appPath)(app);
   } else {
-    require('./index.js').default(app);
+    require(callBackPath)(app);
   }
   next();
 });
@@ -37,3 +45,5 @@ app.listen(config.port);
 console.log(`Server started on port ${
       config.port
     }`);
+
+    module.exports = app;
