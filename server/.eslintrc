@@ -1,7 +1,23 @@
 {
   "extends": "airbnb-base",
   "rules": {
-    "semi": [0, "never"]
+    "brace-style": [
+      "error",
+      "stroustrup"
+    ],
+    "comma-dangle": [
+      "error",
+      "never"
+    ],
+    "no-unused-vars": [
+      "warn"
+    ],
+    "no-var": [
+      "off"
+    ],
+    "one-var": [
+      "off"
+    ]
   },
   "parserOptions": {
     "ecmaVersion": 6,

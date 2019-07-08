@@ -1,0 +1,14 @@
+swagger: "2.0"
+info:
+  version: "1.0.0"
+  title: Property Pro Lite
+  description: "This is a Api for user  to post and fecth adverts and do auntantication to keep track of hi/her adverts and can see everyone else's"
+host: "localhost:8081"
+basePath: "/api/v1"
+schemes:
+  - http
+consumes:
+  - application/json
+produces:
+  - application/json
+paths:

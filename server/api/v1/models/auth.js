@@ -1,26 +1,22 @@
- const Validator = require('jsonschema').Validator;
- const v = new Validator();
 
- // Person
- let schema = {
-   "type": "object",
-   "properties": {
-
-    "address": {"type":"string"},
-    "id": {
-      "type": "number"
+// Person
+const schema = {
+  type: 'object',
+  properties: {
+    address: { type: 'string' },
+    id: {
+      type: 'number'
     },
-     "email": {
-       "type": "string"
-     },
-     "first_name":  {"type":"string"},
-     "last_name":  {"type":"string"},
-     "password":  {"type":"string"},
-     "confirm_password":  {"type":"string"},
-     "phone_number":  {"type":"string"},
-     "is_admin":  {"type":"boolean"}
-   }
- };
+    email: {
+      type: 'string'
+    },
+    firstName: { type: 'string' },
+    lastName: { type: 'string' },
+    password: { type: 'string' },
+    confirmPassword: { type: 'string' },
+    phoneNumber: { type: 'string' },
+    isAdmin: { type: 'boolean' }
+  }
+};
 
-
- module.exports = { schema };
+module.exports = { schema };

@@ -1,4 +1,5 @@
 const express = require('express');
+
 const router = express.Router();
 const PropertyController = require('../controllers/propertyController');
 
@@ -9,4 +10,4 @@ router.get('/property', PropertyController.get_all);
 router.get('/property/user/:user_id', PropertyController.get_by_user);
 router.delete('/property/:id', PropertyController.delete);
 
-module.exports = (router);
+module.exports = router;
