@@ -1,57 +1,69 @@
-const users = [{
-  "id": 1,
-  "address": "bro",
-  "email": "bro",
-  "first_name": "bro",
-  "last_name": "bro",
-  "password": "bro",
-  "confirm_password": "bro",
-  "phone_number": "bro",
-  "is_admin": true
-}];
-const { schema } = require('../models/auth');
+const users = [
+  {
+    id: 1,
+    address: 'bro',
+    email: 'bro',
+    firstName: 'bro',
+    lastName: 'bro',
+    password: 'bro',
+    confirmPassword: 'bro',
+    phoneNumber: 'bro',
+    isAdmin: true
+  }
+];
 
 const _ = require('lodash');
 
+const jwt = require('jsonwebtoken');
+const express = require('express');
+
+const app = express();
+
+// We also need a secret to encode/decode our JWTs
+app.set('appSecret', 'super-secret-secret');
+
 const Validator = require('jsonschema').Validator;
+const { schema } = require('../models/auth');
+
 const v = new Validator();
-module.exports = { 
+module.exports = {
   async register(req, res) {
     try {
       const id_auto_inc = users[users.length - 1].id + 1;
       const {
         address,
         email,
-        first_name,
-        last_name,
+        firstName,
+        lastName,
         password,
-        confirm_password,
-        phone_number,
-        is_admin
+        confirmPassword,
+        phoneNumber,
+        isAdmin
       } = req.body;
       const user = {
         id: id_auto_inc,
         address,
         email,
-        first_name,
-        last_name,
+        firstName,
+        lastName,
         password,
-        confirm_password,
-        phone_number,
-        is_admin
+        confirmPassword,
+        phoneNumber,
+        isAdmin
       };
-      
+
       const User = v.validate(user, schema);
       if (User.errors.length !== 0) throw User.errors;
       users.push(user);
-      
-      console.log(id_auto_inc +'   ' + users);
+
+      console.log(`${id_auto_inc}   ${users}`);
       await res.status(200).send({
-        "status": "success",
-        "array": users.length,
-        "data": users
+        status: 'success',
+        array: users.length,
+        data: users
       });
-    } catch (error) {
+    }
+    catch (error) {
       await res.status(500).send({
         message: `error: ${error}`
       });
@@ -59,44 +71,52 @@ module.exports = {
   },
   async login(req, res) {
     try {
-      const {
-        email,
-        password
-      } = req.body;
-      const emailvalid = users.find( user=>user.email === email);
-      if (!emailvalid) throw res.status(403).send({
-        "status": "error",
-        "error": `invalid email or password`
-      });
-      const passwordValid = emailvalid.password === password;
-      if (passwordValid == false) throw res.status(403).send({
-        "status": "error",
-        "error": `invalid email or password`
-      });
-      res.status(200).send({
-        "status": "success",
-        "data": emailvalid
-      });
+      const { email, password } = req.body;
+      const User = users.find(user => user.email === email);
+      if (!User) {
+        throw res.status(401).json({
+          message: 'Wrong email or password combination.'
+        });
+      }
+      console.log(typeof User);
 
-    } catch(error) {
+      const UserValid = User.password === password;
+      if (UserValid === false) {
+        throw res.status(401).json({
+          message: 'Wrong email or password combination.'
+        });
+      }
+      console.log(UserValid);
+      const token = jwt.sign(User, app.get('appSecret'));
+      console.log(token);
+      res.status(200).json({
+        status: 'success',
+        data: token
+      });
+    }
+    catch (error) {
       res.status(403).send({
-        "status": "error",
-        "error": `invalid email or password:   ${error}`
+        status: 'error',
+        error: `invalid email or password:   ${error}`
       });
     }
   },
-  async update (req, res) {
-  try {  const user = [];
-    const bro = _.chain(users).find({id: 1}).merge({email: "muhireboris@yahoo.fr",first_name: "my nigga"});
-    res.status(200).send({
-      "status":"success",
-      "data": bro,
-      "dataUser": users
-  });
-} catch(error) {
-  await res.status(500).send({
-    message: `error: ${error}`
-  });
-}
+  async update(req, res) {
+    try {
+      const user = [];
+      const bro = _.chain(users)
+        .find({ id: 1 })
+        .merge({ email: 'muhireboris@yahoo.fr', first_name: 'my nigga' });
+      res.status(200).send({
+        status: 'success',
+        data: bro,
+        dataUser: users
+      });
+    }
+    catch (error) {
+      await res.status(500).send({
+        message: `error: ${error}`
+      });
+    }
   }
 };
